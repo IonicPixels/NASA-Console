@@ -1,0 +1,1 @@
+This is a project made by the Robotics class of 2020. There were some issues in the Python half of the code, and I did my best to minimize the amount of issues present, along with adding a little more automation to the script, and shortening run times.
