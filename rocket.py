@@ -1,12 +1,12 @@
+# -*- coding: utf-8 -*-
 import time                             #RE ENABLE THE GPIO!!!!--------------------------------------------------
 import pygame
 import os
-#import sys
 
-import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(18,GPIO.OUT)
+#import RPi.GPIO as GPIO
+#GPIO.setmode(GPIO.BCM)
+#GPIO.setwarnings(False)
+#GPIO.setup(18,GPIO.OUT)
 
 pygame.mixer.pre_init(44100, -16, 2 , 2048)
 pygame.init()
@@ -17,33 +17,33 @@ clear = lambda: os.system('clear')
 
 time.sleep(0)
 clear()
-#print sys.getefaultencoding()
 print ('-----------------------------------------------')
 print ('------------ Welcome To NASA OS ---------------')
 print ('-----------------------------------------------')
 print ('')
 print ('256k Ram Check...')
-time.sleep(2)
+time.sleep(1)
 print('OK!')
 print('')
 time.sleep(1)
-print ('please wait, Starting systems') 
+print ('please wait, Starting systems')
+time.sleep(.5)
+print ('.')
+time.sleep(.5)
+print ('.')
+time.sleep(.5)
 print ('.')
 time.sleep(1)
-print ('.')
-time.sleep(1)
-print ('.')
-time.sleep(2)
 print ('Systems Started!')
-GPIO.output(18,GPIO.HIGH)
-time.sleep(1)
-GPIO.output(18,GPIO.LOW)
+#GPIO.output(18,GPIO.HIGH)
+time.sleep(.5)
+#GPIO.output(18,GPIO.LOW)
 print ('')
 
-time.sleep(2)
-x = input('Start Preflight Checks? (1)Yes or (2)No ')
-print ('Usr_input: ' + str(x))
 time.sleep(1)
+x = input("Start Preflight Checks? (1) Yes or (2) No\n")
+print ('User input: ' + str(x))
+time.sleep(.5)
 
 t = (.75)
 
@@ -62,9 +62,9 @@ if x == 1:
     time.sleep(t)
     print ('    External nosecone tank purge')
     print ('')
-    GPIO.output(18,GPIO.HIGH)   #PLC PULSE 2 ON      -----------------------------------------------RPI----------------------------------------------------------------
+    #GPIO.output(18,GPIO.HIGH)   #PLC PULSE 2 ON      -----------------------------------------------RPI----------------------------------------------------------------
     time.sleep(t)
-    GPIO.output(18,GPIO.LOW)    #PLC PULSE 2 OFF     -----------------------------------------------RPI----------------------------------------------------------------
+    #GPIO.output(18,GPIO.LOW)    #PLC PULSE 2 OFF     -----------------------------------------------RPI----------------------------------------------------------------
     print ('T-19 hours and counting')
     time.sleep(t)
     print ('    Filling launch pad sound suppression system water tank')
@@ -154,18 +154,18 @@ if x == 1:
     print('')
     print ('Number Match?')
     time.sleep(.5)
-    print ('(1)Yes or (2)No')
+    print ('(1) Yes or (2) No')
     z = 0
     del z
     z = input ()
-    print ('Usr_input: ' + str(z))
+    print ('User input: ' + str(z))
     
     if z == 1:
-        GPIO.output(18,GPIO.HIGH) #plc pulse on 3
+        #GPIO.output(18,GPIO.HIGH) #plc pulse on 3
         print ('')
         time.sleep(1)
         print ('Loading Coordinates')
-        GPIO.output(18,GPIO.LOW)  #plc pulse off 3
+        #GPIO.output(18,GPIO.LOW)  #plc pulse off 3
         print ('.')
         time.sleep(1)
         print ('.')
@@ -176,20 +176,20 @@ if x == 1:
         time.sleep(t)
         
         clear()
-        GPIO.output(18,GPIO.HIGH) #PLC 4 on
+        #GPIO.output(18,GPIO.HIGH) #PLC 4 on
         pygame.mixer.music.play()
         print ('')
         print ('----Main engine starting----')
         time.sleep(1)
-        GPIO.output(18,GPIO.LOW)  #plc 4 off
+        #GPIO.output(18,GPIO.LOW)  #plc 4 off
         print ('---------Keep Clear!--------')
         time.sleep(8.5)
         print ('           10')
-        GPIO.output(18,GPIO.HIGH) #PLC 5 PULSE ON -----------------------------------------------RPI----------------------------------------------------------------
+        #GPIO.output(18,GPIO.HIGH) #PLC 5 PULSE ON -----------------------------------------------RPI----------------------------------------------------------------
         time.sleep(1)
         print ('            9')
         print('Ignition Sequence Start!')
-        GPIO.output(18,GPIO.LOW) #PLC 5 PULSE OFF -----------------------------------------------RPI----------------------------------------------------------------
+        #GPIO.output(18,GPIO.LOW) #PLC 5 PULSE OFF -----------------------------------------------RPI----------------------------------------------------------------
         time.sleep(1)
         print ('            8')
         time.sleep(1)
@@ -202,10 +202,10 @@ if x == 1:
         print ('            4')
         time.sleep(1)
         print ('            3')
-        GPIO.output(18,GPIO.HIGH) #PLC PULSE 6 ON (LAUNCH) -----------------------------------------------RPI----------------------------------------------------------------
+        #GPIO.output(18,GPIO.HIGH) #PLC PULSE 6 ON (LAUNCH) -----------------------------------------------RPI----------------------------------------------------------------
         time.sleep(1)
         print ('            2')
-        GPIO.output(18,GPIO.LOW) #PLC PULSE 6 OFF          -----------------------------------------------RPI----------------------------------------------------------------
+        #GPIO.output(18,GPIO.LOW) #PLC PULSE 6 OFF          -----------------------------------------------RPI----------------------------------------------------------------
         time.sleep(1)
         print ('            1')
     
@@ -242,6 +242,7 @@ if x == 1:
         print ('       . ')
         print ('       . ')
         time.sleep(120)
+        exit()
     else:
         print ('Canceling Systems')
         print ('.')
@@ -251,16 +252,17 @@ if x == 1:
         print ('.')
         time.sleep(1)
         print ('Systems Stopped')
-# sources: https://www.nasa.gov/mission_pages/shuttle/launch/countdown101.html
+        exit()
+        # sources: https://www.nasa.gov/mission_pages/shuttle/launch/countdown101.html
 else:
     print ('Canceling Systems')
     print ('.')
-    time.sleep(1)
+    time.sleep(.5)
     print ('.')
-    time.sleep(1)
+    time.sleep(.5)
     print ('.')
-    time.sleep(1)
+    time.sleep(.5)
     print ('Systems Stopped')
-    
+    exit()
 
 
