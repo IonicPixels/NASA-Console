@@ -1,19 +1,23 @@
 # -*- coding: utf-8 -*-
 
-import time                             #RE ENABLE THE GPIO!!!!--------------------------------------------------
+# Import Externals
+import time
 import pygame
 import os
-
 import RPi.GPIO as GPIO
+
+# Activate GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(18,GPIO.OUT)
 
+# Initialize PyGame
 pygame.mixer.pre_init(44100, -16, 2 , 2048)
 pygame.init()
 pygame.mixer.init()
 pygame.mixer.music.load("NASA_countdown_20sec.wav")
 
+# Time Declarations
 t = (.75)
 
 clear = lambda: os.system('clear')
@@ -21,6 +25,7 @@ clear = lambda: os.system('clear')
 time.sleep(0)
 clear()
 
+# Block 1
 print ('-----------------------------------------------')
 print ('------------ Welcome To NASA OS ---------------')
 print ('-----------------------------------------------')
@@ -39,18 +44,18 @@ time.sleep(.5)
 print ('.')
 time.sleep(1)
 print ('Systems Started!')
-GPIO.output(18,GPIO.HIGH)
+GPIO.output(18,GPIO.HIGH) # Initialize RPi GPIO Pin 18, PLC Pulse On (1)
 time.sleep(.5)
-GPIO.output(18,GPIO.LOW)
+GPIO.output(18,GPIO.LOW) # Uninitialize RPi GPIO Pin 18, PLC Pulse Off (1)
 print ('')
-
 time.sleep(1)
-print("Start Preflight Checks? (1) Yes or (2) No\n")
+print("Start Preflight Checks? (1) Yes or (2) No\n") # First question prompt
 time.sleep(.5)
-print ('Auto input: = 1')
+print ('Auto input: = 1') # Text to signify an automatic input, this is to avoid user input
 time.sleep(.5)
-
 clear()
+
+# Block 2
 print ('')
 print ('Starting Preflight Checks...')
 print ('')
@@ -64,9 +69,9 @@ print ('T-19 hours and holding...')
 time.sleep(t)
 print ('    External nosecone tank purge')
 print ('')
-GPIO.output(18,GPIO.HIGH)   #PLC PULSE 2 ON      -----------------------------------------------RPI----------------------------------------------------------------
+GPIO.output(18,GPIO.HIGH)   # Initialize RPi GPIO Pin 18, PLC Pulse On (2)
 time.sleep(t)
-GPIO.output(18,GPIO.LOW)    #PLC PULSE 2 OFF     -----------------------------------------------RPI----------------------------------------------------------------
+GPIO.output(18,GPIO.LOW)    # Uninitilaize RPi GPIO Pin 18, PLC Pulse Off (2)
 print ('T-19 hours and counting')
 time.sleep(t)
 print ('    Filling launch pad sound suppression system water tank')
@@ -95,6 +100,8 @@ print ('.')
 time.sleep(.5)
 print ('    Systems Passed')
 clear()
+
+#Block 3
 time.sleep(t)
 print ('T-20 MINUTES and counting')
 time.sleep(t)
@@ -121,6 +128,8 @@ print ('.')
 time.sleep(t)
 print ('    Systems Passed')
 clear()
+
+# Block 4
 print ('    Retracting gaseous oxygen vent arm')      
 time.sleep(t)
 print ('    Transfering orbiter power from ground to internal')
@@ -133,6 +142,8 @@ print ('')
 time.sleep(t)
 print ('    Activated main engine hydrogen burn off system')
 clear()
+
+# Block 5
 print ('.')
 time.sleep(.5)
 print ('.')
@@ -146,23 +157,26 @@ time.sleep(.5)
 print ('.')
 time.sleep(.5)
 clear()
+
+# Block 6
 print ('Loading Coordinates...')
 time.sleep(1)
 clear()
+
+# Block 7
 print ('Landing Coordinates:')
 time.sleep(t)
-print('N_5.0667° W_77.333° ±20^2 mi')
+print('N_5.0667° W_77.333° ±20^2 mi') # Note: Can cause issues if program isn't set to use UTF-8
 time.sleep(1) 
 print('')
-print ("Number Match?\n (1) Yes or (2) No\n")
+print ("Number Match?\n (1) Yes or (2) No\n") # Second question prompt
 time.sleep(.5)
-print('Auto Input = 1')
-
-GPIO.output(18,GPIO.HIGH) #plc pulse on 3
+print('Auto Input = 1') # Text to signify an auto input, to avoid user input
+GPIO.output(18,GPIO.HIGH) # Initialize RPi GPIO Pin 18, PLC Pulse On (3)
 print ('')
 time.sleep(1)
 print ('Loading Coordinates')
-GPIO.output(18,GPIO.LOW)  #plc pulse off 3
+GPIO.output(18,GPIO.LOW)  #Initialize RPi GPIO Pin 18, PLC Pulse Off (3)
 print ('.')
 time.sleep(.5)
 print ('.')
@@ -172,20 +186,22 @@ time.sleep(.5)
 print ('Coordinates Loaded!')
 time.sleep(.5)
 clear()
-GPIO.output(18,GPIO.HIGH) #PLC 4 on
-pygame.mixer.music.play()
+
+# Block 8
+GPIO.output(18,GPIO.HIGH) # Initialize RPi GPIO Pin 18, PLC Pulse On (4)
+pygame.mixer.music.play() # Start the SFX
 print ('')
 print ('----Main engine starting----')
 time.sleep(1)
-GPIO.output(18,GPIO.LOW)  #plc 4 off
+GPIO.output(18,GPIO.LOW)  # Uninitialize RPi GPIO Pin 18, PLC Pulse Off (4)
 print ('---------Keep Clear!--------')
 time.sleep(8.5)
 print ('           10')
-GPIO.output(18,GPIO.HIGH) #PLC 5 PULSE ON -----------------------------------------------RPI----------------------------------------------------------------
+GPIO.output(18,GPIO.HIGH) # Initialize RPi GPIO Pin 18, PLC Pulse On (5)
 time.sleep(1)
 print ('            9')
 print('Ignition Sequence Start!')
-GPIO.output(18,GPIO.LOW) #PLC 5 PULSE OFF -----------------------------------------------RPI----------------------------------------------------------------
+GPIO.output(18,GPIO.LOW) # Uninitialize RPi GPIO Pin 18, PLC Pulse Off (5)
 time.sleep(1)
 print ('            8')
 time.sleep(1)
@@ -198,10 +214,10 @@ time.sleep(1)
 print ('            4')
 time.sleep(1)
 print ('            3')
-GPIO.output(18,GPIO.HIGH) #PLC PULSE 6 ON (LAUNCH) -----------------------------------------------RPI----------------------------------------------------------------
+GPIO.output(18,GPIO.HIGH) # Initialize RPi GPIO Pin 18, PLC Pulse On (6) - Launch Pulse 
 time.sleep(1)
 print ('            2')
-GPIO.output(18,GPIO.LOW) #PLC PULSE 6 OFF          -----------------------------------------------RPI----------------------------------------------------------------
+GPIO.output(18,GPIO.LOW) # Initialize RPi GPIO Pin 18, PLC Pulse Off (6)
 time.sleep(1)
 print ('            1')
     
@@ -211,6 +227,8 @@ print ('This is Mission Control, WE HAVE LIFT OFF!')
 #leave time for audio
         
 time.sleep(.75)
+
+# Print Rocket in terminal text
 print ('       !')
 print ('       !')
 print ('       ^')
@@ -237,6 +255,8 @@ print ('      ( ) ')
 print ('       . ')
 print ('       . ')
 print ('       . ')
-time.sleep(25)
+
+time.sleep(25) # Wait for SFX to end
+clear()
 exit()
 # sources: https://www.nasa.gov/mission_pages/shuttle/launch/countdown101.html
